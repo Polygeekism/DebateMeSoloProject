@@ -54,18 +54,18 @@ body, html {
   border-radius: 0px;
 }
 
-ul {
+.header {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-li {
+.liHeader{
   float: left;
 }
 
-li a {
+li a{
   display: block;
   color: white;
   text-align: center;
