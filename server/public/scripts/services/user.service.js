@@ -13,6 +13,7 @@ myApp.service('UserService', function($http, $location){
               self.userObject.userName = response.data.username;
               self.userObject.totalWins = response.data.totalWins;
               self.userObject.totalDebates = response.data.totalDebates;
+              self.userObject.winPercentage = (response.data.totalWins/response.data.totalDebates)*100;
               console.log('UserService -- getuser -- User Data: ', self.userObject);
           } else {
               console.log('UserService -- getuser -- failure');
