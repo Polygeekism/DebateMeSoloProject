@@ -2,6 +2,17 @@
 <div class="container">
     <h1>New game page</h1>
     {{ngc.allUsers}}
+    <table>
+        <thead>
+            <th>USer</th><th>Total Wins</th><th>Win Percentage</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in ngc.allUsers.list">
+                <td>{{user.username}}</td>
+                <td>{{user.totalWins}}</td>   
+                <td>{{user.winPercentage | number: 0}}%</td> 
+        </tbody>   
+    </table>
 
 
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
