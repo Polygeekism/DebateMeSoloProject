@@ -1,7 +1,6 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
     <h1>New game page</h1>
-    {{ngc.allUsers}}
     <table>
         <thead>
             <th>USer</th><th>Total Wins</th><th>Win Percentage</th>
@@ -11,6 +10,7 @@
                 <td>{{user.username}}</td>
                 <td>{{user.totalWins}}</td>   
                 <td>{{user.winPercentage | number: 0}}%</td> 
+                <td><button ng-click="ngc.startNewGame()">Start New Game</button></td>
         </tbody>   
     </table>
 

@@ -12,4 +12,8 @@ myApp.controller('NewGameController', function (UserService) {
     // self.allUsersAddPercent();
 
     //need to handle clicks for new scoreboard
+    self.startNewGame = function(){
+        console.log('New game button clicked');
+        window.location ="#/game";
+    }
 });
