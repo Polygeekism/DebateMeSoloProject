@@ -1,7 +1,8 @@
 myApp.controller('NewGameController', function(UserService) {
     console.log('NewGameController created');
-    var vm = this;
-    vm.userService = UserService;
+    var self = this;
+    
+    self.allUsers = UserService.allUsers;
 
     //need to bring in list of all users
     UserService.getAllUsers();

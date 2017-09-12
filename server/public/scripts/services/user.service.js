@@ -3,6 +3,7 @@ myApp.service('UserService', function($http, $location){
   var self = this;
 
   self.userObject = {};
+  self.allUsers = {list:[]};
 
     self.getuser = function(){
       console.log('UserService -- getuser');
@@ -30,7 +31,7 @@ myApp.service('UserService', function($http, $location){
       $http.get('/user/allusers').then(function(response){
         if(response.data){
           console.log('returned from the server getallusers route', response.data);
-
+          self.allUsers.list = response.data;
         }else{
           console.log('UserService get all users failure');
           $location.path("/home");
