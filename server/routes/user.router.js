@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Users = require('../models/user.js')
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -20,6 +21,19 @@ router.get('/', function(req, res) {
     // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
     res.send(false);
   }
+});
+
+router.get('/allusers', function(req, res){
+  Users.find({}, function(err,data){
+    if(err){
+      console.log('find users error', err)
+      res.sendStatus(500);
+    } else {
+      console.log('received users', data);
+      res.send(data);
+    }
+  });
+
 });
 
 // clear all server session information about this user

@@ -25,6 +25,19 @@ myApp.service('UserService', function($http, $location){
         $location.path("/home");
       });
     },
+    self.getAllUsers = function(){
+      console.log('UserService -- getAllUsers');
+      $http.get('/user/allusers').then(function(response){
+        if(response.data){
+          console.log('returned from the server getallusers route', response.data);
+
+        }else{
+          console.log('UserService get all users failure');
+          $location.path("/home");
+
+        }
+      })
+    }
 
     self.logout = function() {
       console.log('UserService -- logout');

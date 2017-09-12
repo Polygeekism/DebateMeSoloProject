@@ -33,7 +33,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/newgame',{
       templateUrl: '/views/templates/newgame.html',
-      controller: 'NewGameController',
+      controller: 'NewGameController as ngc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
