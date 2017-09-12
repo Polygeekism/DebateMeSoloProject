@@ -1,3 +1,3 @@
 myApp.controller('GameController', function(){
-    console.log('Game Controller Loaded');
+    //console.log('Game Controller Loaded');
 })

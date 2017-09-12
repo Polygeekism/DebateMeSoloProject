@@ -10,7 +10,7 @@
                 <td>{{user.username}}</td>
                 <td>{{user.totalWins}}</td>   
                 <td>{{user.winPercentage | number: 0}}%</td> 
-                <td><button ng-click="ngc.startNewGame()">Start New Game</button></td>
+                <td><button ng-click="ngc.startNewGame(ngc.userObject._id, user._id)">Start New Game</button></td>
         </tbody>   
     </table>
 
