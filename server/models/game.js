@@ -5,7 +5,7 @@ var GameSchema = new Schema({
     user1: { type: String, required: true },
     user2: { type: String, required: true },
     user1score: { type: Number, default: 0 },
-    user2score: { type: String, default: 0 },
+    user2score: { type: Number, default: 0 },
 
     debates: [{
         description: { type: String },

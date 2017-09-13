@@ -12,7 +12,8 @@ myApp.service('GameService', function($http, $location){
     }
     
     self.createGame = function(user1, user2){
-        $http.post('/game').then(function(response){
+        let users = {user1:user1, user2:user2}
+        $http.post('/game', users).then(function(response){
             console.log('Got response from Game Post route');
         })
     }
