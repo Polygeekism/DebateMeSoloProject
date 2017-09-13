@@ -1,2 +1,18 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <h1>Game Page</h1>
+<div id='nameScoreBoard' layout='row' layout-align='space-between-center'>
+    <div id='currentUser' flex layout='column'>
+        <h1>User1Name</h1>
+        <h2>User1Score</h2>
+    </div>
+    <div id='gameInputs' layout='column'>
+        <input id = 'descriptionInput' type='text' placeholder='Debate description'>
+        <select>    </select>
+        <button>Submit</button>
+    </div>
+    <div id='opponent' flex layout='column'  layout-align='end end'>
+        <h1>User2Name</h1>
+        <h2>User2Score</h2>
+    </div>
+
+</div>
