@@ -1,3 +1,3 @@
-myApp.controller('GameController', function(){
+myApp.controller('GameController',['GameService', 'UserService', function(GameService, UserService){
     //console.log('Game Controller Loaded');
-})
+}])
