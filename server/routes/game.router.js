@@ -7,4 +7,10 @@ router.get('/', function(req, res){
     res.sendStatus(200);
 })
 
+router.post('/', function(req,res){
+    console.log('router post route hit');
+    res.sendStatus(200);
+    
+})
+
 module.exports = router;

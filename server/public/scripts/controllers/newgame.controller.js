@@ -1,4 +1,4 @@
-myApp.controller('NewGameController', function (UserService) {
+myApp.controller('NewGameController',['UserService', 'GameService', function (UserService, GameService) {
     //console.log('NewGameController created');
     var self = this;
 
@@ -13,6 +13,7 @@ myApp.controller('NewGameController', function (UserService) {
     //need to handle clicks for new scoreboard
     self.startNewGame = function(userName ,opponentName){
         console.log('UserName: ',userName, 'OpponentName: ', opponentName);
+        GameService.createGame(userName, opponentName);
         window.location ="#/game";
     }
-});
+}]);
