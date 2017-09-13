@@ -2,11 +2,32 @@ var express = require('express');
 var router = express.Router();
 var Games = require('../models/game.js');
 
+
 router.get('/', function (req, res) {
     console.log('game get route hit');
 
 
     res.sendStatus(200);
+})
+router.get('/usergames', function (req, res) {
+    console.log('usergames get route hit');
+    //let userId = id;
+    if (req.isAuthenticated()) {
+        var userInfo = {
+            user1: req.user.username
+        }
+
+        Games.find(userInfo, function (err, data) {
+            if (err) {
+                console.log('find usersgames error: ', err);
+                res.sendStatus(500);
+            } else {
+                console.log('found data from usersgames', data);
+                res.send(data);
+            }
+
+        })
+    }
 })
 
 router.post('/', function (req, res) {
@@ -35,14 +56,9 @@ router.post('/', function (req, res) {
                     res.send(data);
                 }
             }
-
             );
-
         }
     })
-
-
-
 })
 
 module.exports = router;

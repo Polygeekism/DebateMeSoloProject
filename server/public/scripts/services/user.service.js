@@ -9,9 +9,9 @@ myApp.service('UserService', function ($http, $location) {
     console.log('UserService -- getuser');
     $http.get('/user').then(function (response) {
       if (response.data) {
-        //console.log('whole response from server: ', response.data)
+        console.log('whole response from server: ', response.data)
         // user has a curret session on the server
-        //self.userObject.id = response.data._id;
+        self.userObject.id = response.data._id;
         self.userObject.userName = response.data.username;
         self.userObject.totalWins = response.data.totalWins;
         self.userObject.totalDebates = response.data.totalDebates;
