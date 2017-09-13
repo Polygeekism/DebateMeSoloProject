@@ -4,6 +4,6 @@ myApp.controller('UserController', function(UserService) {
   vm.userService = UserService;
   vm.userObject = UserService.userObject;
   // vm.winPercentage = ((vm.userObject.totalWins)/(vm.userObject.totalDebates))* 100;
-  //git console.log('Userobject from controller ', vm.userObject);
+  //console.log('Userobject from controller ', vm.userObject);
   //console.log('Win % from controller ', vm.userObject.winPercentage);
 });
