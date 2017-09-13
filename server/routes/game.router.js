@@ -17,7 +17,7 @@ router.get('/usergames', function (req, res) {
             user1: req.user.username
         }
 
-        Games.find(userInfo, function (err, data) {
+        Games.find({$or:[{user1:req.user.username},{user2:req.user.username}]}, function (err, data) {
             if (err) {
                 console.log('find usersgames error: ', err);
                 res.sendStatus(500);
