@@ -5,16 +5,19 @@ myApp.service('GameService', function($http, $location){
     self.currentGame = {};
     self.usersGames = {list:[]};
 
-    self.getGames = function(){
+    self.getGame = function(user1, user2){
         $http.get('/game').then(function(reponse){
             console.log('Got response from Game Get route');
         })
     }
+
+    //self.getGameDetail = function(){};
     
     self.createGame = function(user1, user2){
         let users = {user1:user1, user2:user2}
         $http.post('/game', users).then(function(response){
-            console.log('Got response from Game Post route');
+            console.log('Got response from Game Post route: ', response);
+            self.currentGame = response;
         })
     }
 })

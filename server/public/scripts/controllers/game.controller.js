@@ -2,6 +2,6 @@ myApp.controller('GameController',['GameService', 'UserService', function(GameSe
     console.log('Game Controller Loaded');
     var self = this;
 
-    GameService.getGames();
+    //GameService.getGame();
     //GameService.createGame();
 }])
