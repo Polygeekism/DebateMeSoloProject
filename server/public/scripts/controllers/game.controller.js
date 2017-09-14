@@ -2,8 +2,15 @@ myApp.controller('GameController',['GameService', 'UserService', '$routeParams',
     console.log('Game Controller Loaded');
     var self = this;
 
-    self.currentGame = GameService.currentGame;
-    console.log(self.currentGame);
+    self.currentGame = {};
+    console.log('$routeParams', $routeParams.gameId);
+    //console.log(self.currentGame);
+    self.getCurrentGame = function(gameId){
+        GameService.getGame(gameId);
+        self.currentGame = GameService.currentGame;
+
+    }
+    self.getCurrentGame($routeParams.gameId);
     //GameService.getGame();
     //GameService.createGame();
 }])

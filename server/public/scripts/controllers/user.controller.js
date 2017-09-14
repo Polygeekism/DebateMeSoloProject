@@ -13,7 +13,7 @@ myApp.controller('UserController', ['UserService', 'GameService', '$routeParams'
     
     console.log('users games, ', self.usersGames);
   }
-  console.log('user id:', self.userObject.userName);
+  //console.log('user id:', self.userObject.userName);
   self.getUsersGames();
 
   //dont send name with request, use passport on the server side to access the ID of the user and retrieve the name of the user that way, then finally go to the games collection to get the correct games

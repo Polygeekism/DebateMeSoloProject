@@ -3,12 +3,13 @@ var router = express.Router();
 var Games = require('../models/game.js');
 
 
-router.get('/', function (req, res) {
+router.get('/gameId/:id', function (req, res) {
     console.log('game get route hit');
 
 
     res.sendStatus(200);
 })
+
 router.get('/usergames', function (req, res) {
     console.log('usergames get route hit');
     //let userId = id;
