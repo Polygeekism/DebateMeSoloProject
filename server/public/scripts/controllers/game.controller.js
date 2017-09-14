@@ -7,11 +7,12 @@ myApp.controller('GameController',['GameService', 'UserService', '$routeParams',
     //console.log(self.currentGame);
     self.getCurrentGame = function(gameId){
         GameService.getGame(gameId);
-        self.displayGame.list = GameService.displayGame.list;
+        self.displayGame = GameService.displayGame;
         console.log('current game on controller, ',self.displayGame);
 
     }
     self.getCurrentGame($routeParams.gameId);
+
     //GameService.getGame();
     //GameService.createGame();
 }])

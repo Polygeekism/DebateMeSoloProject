@@ -2,8 +2,8 @@
 <h1>Game Page</h1>
 <div id='nameScoreBoard' layout='row' layout-align='space-between-center'>
     <div id='currentUser' flex layout='column'>
-        <h1>{{gc.currentGame.user1}}</h1>
-        <h2>User1Score</h2>
+        <h1>{{gc.displayGame.list[0].user1}}</h1>
+        <h2>{{gc.displayGame.list[0].user1score}}</h2>
     </div>
     <div id='gameInputs' layout='column'>
         <input id = 'descriptionInput' type='text' placeholder='Debate description'>
@@ -11,8 +11,8 @@
         <button>Submit</button>
     </div>
     <div id='opponent' flex layout='column'  layout-align='end end'>
-        <h1>User2Name</h1>
-        <h2>User2Score</h2>
+        <h1>{{gc.displayGame.list[0].user2}}</h1>
+        <h2>{{gc.displayGame.list[0].user2score}}</h2>
     </div>
 
 </div>
