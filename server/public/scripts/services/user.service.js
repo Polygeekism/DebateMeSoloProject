@@ -51,5 +51,11 @@ myApp.service('UserService', function ($http, $location) {
       $location.path("/home");
     });
   }
+  self.updateUserGames = function(user1,user2, gameId){
+    let updateSet = {user1:user1, user2:user2, gameId:gameId};
+    $http.put('/user/updateusergames/', updateSet).then(function(response){
+      console.log('User game lists updated, ', response);
+    })
+  }
 
 });
