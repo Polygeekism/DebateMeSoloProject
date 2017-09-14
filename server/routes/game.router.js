@@ -17,6 +17,20 @@ router.get('/gameId/:id', function (req, res) {
     })
 })
 
+router.get('/allgames', function(req,res){
+    if (req.isAuthenticated()){
+        Games.find({},function(err,data){
+            if (err) {
+                console.log('find allgames error: ', err);
+                res.sendStatus(500);
+            } else {
+                console.log('found data from allgames', data);
+                res.send(data);
+            }
+        })
+    }
+})
+
 router.get('/usergames', function (req, res) {
     console.log('usergames get route hit');
     //let userId = id;
