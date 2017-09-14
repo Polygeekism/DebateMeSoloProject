@@ -6,12 +6,14 @@
     <h2 id="winPercentage">Win Percentage: {{uc.userObject.winPercentage | number:2}}%</h2>
     <ul>
         <h2>Games</h2>
-        <li ng-repeat='game in uc.userGames.list'>
-            Game with Johnny
-        </li>
+        <div id='gameDiv' layout='column' layout-align='start'>
+            <li class='userGames' ng-repeat='game in uc.usersGames.list'>
+                <a class='userGameList' ng-href='/#/game/{{game._id}}'>
+            Player 1:{{game.user1}} {{game.user1score}} || Player 2:{{game.user2}} {{game.user2score}}</a>
+            game Id {{game._id}}
+            </li>
+            
+        </div>
     </ul>
-    {{uc.usersGames}}
-
-
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
 </div>

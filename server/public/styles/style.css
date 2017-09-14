@@ -27,6 +27,9 @@ body, html {
 .container p{
   margin-top : 14px;
 }
+.userGames{
+
+}
 
 .message {
   padding: 10px 0;
@@ -64,6 +67,9 @@ body, html {
 .liHeader{
   float: left;
 }
+.userGameList{
+  color: turquoise;
+}
 
 li a{
   display: block;
@@ -76,9 +82,12 @@ li a{
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   text-decoration: underline;
-  color: #eee;
+  color: black;
 }
 #descriptionInput{
   height: 150px;
   width:200px;
+}
+#gameDiv{
+  width:350px;
 }

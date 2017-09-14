@@ -25,7 +25,8 @@ myApp.service('GameService', function($http, $location){
         let users = {user1:user1, user2:user2}
         $http.post('/game', users).then(function(response){
             console.log('Got response from Game Post route: ', response);
-            self.currentGame = response;
+            self.currentGame = response.data;
+            console.log('current game on service, ', self.currentGame)
         })
     }
 })

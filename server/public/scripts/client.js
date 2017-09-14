@@ -40,9 +40,9 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/game',{
+    .when('/game/:gameId',{
       templateUrl: '/views/templates/game.html',
-      controller: 'GameController',
+      controller: 'GameController as gc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
