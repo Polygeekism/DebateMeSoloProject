@@ -4,10 +4,12 @@ myApp.service('GameService', function($http, $location){
 
     self.currentGame = {};
     self.usersGames = {list:[]};
+    self.displayGame = {list:[]};
 
     self.getGame = function(gameId){
         $http.get('/game/gameId/'+ gameId).then(function(response){
-            console.log('Got response from Game Get route, ', response);
+            console.log('Got response from Game Get route, ', response.data);
+            self.displayGame.list = response.data;
         })
     }
 

@@ -4,10 +4,17 @@ var Games = require('../models/game.js');
 
 
 router.get('/gameId/:id', function (req, res) {
-    console.log('game get route hit');
-
-
-    res.sendStatus(200);
+    let gameId = req.params.id
+    console.log('game get route hit,gameId ', gameId);
+    Games.find({ _id: gameId }, function (err, data) {
+        if (err) {
+            console.log('find game error: ', err);
+            res.sendStatus(500);
+        } else {
+            console.log('found data from game', data);
+            res.send(data);
+        }
+    })
 })
 
 router.get('/usergames', function (req, res) {
@@ -18,7 +25,7 @@ router.get('/usergames', function (req, res) {
             user1: req.user.username
         }
 
-        Games.find({$or:[{user1:req.user.username},{user2:req.user.username}]}, function (err, data) {
+        Games.find({ $or: [{ user1: req.user.username }, { user2: req.user.username }] }, function (err, data) {
             if (err) {
                 console.log('find usersgames error: ', err);
                 res.sendStatus(500);
