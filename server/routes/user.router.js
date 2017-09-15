@@ -53,15 +53,17 @@ router.put('/updateusergames', function (req, res) {
       };
     });
   })
-  // Users.find({ username: req.body.user2 }, function (err, user) {
-  //   if (err) return handleError(err);
-  //   user.games.push()
-  //   user.save(function (err) {
-  //     if (err) {
-  //       return handleError(err)
-  //     };
-  //   });
-  // })
+  Users.findOneAndUpdate({ username: req.body.user2 },
+    {$push:{games: req.body.gameId}}, function (err, user) {
+    console.log('user on put route,' ,user)
+    if (err) return handleError(err);
+    // user.games.push(req.body.gameId);
+    user.save(function (err) {
+      if (err) {
+        return handleError(err)
+      };
+    });
+  })
   res.sendStatus(200);
 })
 
