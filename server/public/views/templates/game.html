@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <h1>Game Page</h1>
 <div id='nameScoreBoard' layout='row' layout-align='space-between-center'>
-    <div id='currentUser' flex layout='column'>
+    <div class='opponents' flex layout='column'>
         <h1>{{gc.displayGame.list[0].user1}}</h1>
         <h2>{{gc.displayGame.list[0].user1score}}</h2>
     </div>
@@ -10,7 +10,7 @@
         <select>    </select>
         <button>Submit</button>
     </div>
-    <div id='opponent' flex layout='column'  layout-align='end end'>
+    <div class='opponents' flex layout='column'  layout-align='end end'>
         <h1>{{gc.displayGame.list[0].user2}}</h1>
         <h2>{{gc.displayGame.list[0].user2score}}</h2>
     </div>

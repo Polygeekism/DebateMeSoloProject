@@ -40,10 +40,15 @@ router.get('/logout', function (req, res) {
   res.sendStatus(200);
 });
 
+// router.get('/newgameoptions', function(req,res){
+  
+
+// })
+
 router.put('/updateusergames', function (req, res) {
   console.log('reached the user put route, ', req.body)
   Users.findOneAndUpdate({ username: req.body.user1 },
-    {$push:{games: req.body.gameId}}, function (err, user) {
+    {$push:{games:req.body.gameId, opponents:req.body.user2}}, function (err, user) {
     console.log('user on put route,' ,user)
     if (err) return handleError(err);
     // user.games.push(req.body.gameId);
@@ -54,7 +59,8 @@ router.put('/updateusergames', function (req, res) {
     });
   })
   Users.findOneAndUpdate({ username: req.body.user2 },
-    {$push:{games: req.body.gameId}}, function (err, user) {
+    {$push:{games:req.body.gameId , opponents:req.body.user1}},
+    function (err, user) {
     console.log('user on put route,' ,user)
     if (err) return handleError(err);
     // user.games.push(req.body.gameId);

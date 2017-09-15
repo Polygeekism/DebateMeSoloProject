@@ -15,8 +15,9 @@ myApp.service('UserService', function ($http, $location) {
         self.userObject.userName = response.data.username;
         self.userObject.totalWins = response.data.totalWins;
         self.userObject.totalDebates = response.data.totalDebates;
+        self.userObject.games = response.data.games;
         self.userObject.winPercentage = (response.data.totalWins / response.data.totalDebates) * 100;
-        //console.log('UserService -- getuser -- User Data: ', self.userObject);
+        console.log('UserService -- getuser -- User Data: ', self.userObject);
       } else {
         //console.log('UserService -- getuser -- failure');
         // user has no session, bounce them back to the login page
@@ -57,5 +58,6 @@ myApp.service('UserService', function ($http, $location) {
       console.log('User game lists updated, ', response);
     })
   }
+  self.getNewGameOptions = function(){}
 
 });

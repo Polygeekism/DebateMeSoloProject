@@ -14,6 +14,7 @@ myApp.service('GameService', function ($http, $location, UserService) {
             self.displayGame.list = response.data;
         })
     }
+    
 
     //self.getGameDetail = function(){};
     self.getUsersGames = function () {

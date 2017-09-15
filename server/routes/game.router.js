@@ -61,11 +61,12 @@ router.post('/', function (req, res) {
     }
 
     Games.create(gameToSave, function (err, post) {
-        console.log('post game CreateGame');
+        console.log('post game CreateGame response, ', post);
         if (err) {
             console.log('error creating game in DB');
             res.sendStatus(500);
         } else {
+            //post response above is the game that was created
             console.log('successfully created game in DB');
             Games.find({
                 $and: [{ user1: req.body.user1 }, { user2: req.body.user2 }]

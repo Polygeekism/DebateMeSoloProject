@@ -4,7 +4,9 @@ body, html {
   font-family: sans-serif;
   font-size: 14px;
 }
-
+.opponenets{
+  margin:10px;
+}
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;
@@ -89,5 +91,6 @@ li a:hover {
   width:200px;
 }
 #gameDiv{
+  padding: 15px;
   width:350px;
 }
