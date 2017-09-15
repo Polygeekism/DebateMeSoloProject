@@ -5,29 +5,17 @@ myApp.controller('NewGameController', ['UserService', 'GameService', '$routePara
     self.allUsers = UserService.allUsers;
     self.userObject = UserService.userObject;
     self.allGames = GameService.allGames;
-    self.newGamesOptions = {list:[]};
+    self.newGamesOptions = UserService.newGamesOptions;
     self.currentGame = GameService.currentGame;
     self.usersGames = GameService.usersGames;
 
+    
     //need to bring in list of all users
     UserService.getAllUsers();
-    
+    console.log('all games list, ', self.allUsers,'new game options', self.newGamesOptions)
 
-    self.newGameOptions = function(){
-        UserService.getAllUsers();
-        let games = self.usersGames;
-        let users = self.allUsers;
-        console.log('users, ', users[0])
-        for(var i=0; i<games.list.length; i++){
-            for(var j=0; j<users.length; j++){
-                if(users[j].username != games.list[i].opponentName){
-                    self.newGamesOptions.list.push(users.list[j]);
-                }
-            }
-        }
-        console.log('new game option list, ', self.newGamesOptions)
-    }
-    self.newGameOptions();
+    console.log('user opponent: ', self.userObject.opponents.length)
+
 
     //need to handle clicks for new scoreboard
     self.startNewGame = function (userName, opponentName) {

@@ -6,12 +6,13 @@
             <th>USer</th><th>Total Wins</th><th>Win Percentage</th>
         </thead>
         <tbody>
-            <tr ng-repeat="user in ngc.allUsers.list">
+            <tr ng-repeat="user in ngc.newGamesOptions.list" ng-show="user.show">
                 <td>{{user.username}}</td>
                 <td>{{user.totalWins}}</td>   
                 <td>{{user.winPercentage | number: 0}}%</td> 
                 <td><button ng-click="ngc.startNewGame(ngc.userObject.userName, user.username)">Start New Game</button></td>
         </tbody>   
+        {{ngc.newGamesOptions}}
     </table>
 
 
