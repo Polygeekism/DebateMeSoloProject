@@ -2,7 +2,8 @@ myApp.controller('GameController',['GameService', 'UserService', '$routeParams',
     console.log('Game Controller Loaded');
     var self = this;
 
-    self.debateInformation = {};
+    self.debateInformation = {description: '',
+    winner: ''};
     self.selectWinner = [];
     self.displayGame = {list:[]};
 
@@ -20,7 +21,7 @@ myApp.controller('GameController',['GameService', 'UserService', '$routeParams',
 
     self.submitDebate = function(newDebate){
         if(newDebate.description === '' || newDebate.winner === '') {
-            vm.message = "Enter description and select winner!";
+            window.alert("Enter description and select winner!");
           }else{
               console.log('debate information passed into controller');
           }
