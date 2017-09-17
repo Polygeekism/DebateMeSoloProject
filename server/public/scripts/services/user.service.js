@@ -76,6 +76,5 @@ myApp.service('UserService', function ($http, $location) {
       console.log('User game lists updated, ', response);
     })
   }
-  self.getNewGameOptions = function () { }
 
 });

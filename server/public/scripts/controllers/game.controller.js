@@ -23,7 +23,10 @@ myApp.controller('GameController',['GameService', 'UserService', '$routeParams',
         if(newDebate.description === '' || newDebate.winner === '') {
             window.alert("Enter description and select winner!");
           }else{
-              console.log('debate information passed into controller');
+              console.log('debate information passed into controller, ', newDebate);
+              GameService.submitDebate(newDebate);
+              self.debateInformation = {description: '',
+              winner: ''};
           }
     }
 
