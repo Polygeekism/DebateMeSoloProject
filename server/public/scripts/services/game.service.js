@@ -52,6 +52,9 @@ myApp.service('GameService', function ($http, $location, UserService) {
         console.log('update set ', self.displayGame);
         let updateSet = {gameId: self.displayGame.list[0]._id, description: newDebate.description, winner:newDebate.winner}
         console.log('update set ', updateSet);
+        $http.put('/game/newdebate', updateSet).then(function(response){
+            console.log('got response from the newdebate server call ', response);
+        })
     }
 
     self.getAllGames();

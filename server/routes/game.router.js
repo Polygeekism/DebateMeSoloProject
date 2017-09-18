@@ -17,9 +17,9 @@ router.get('/gameId/:id', function (req, res) {
     })
 })
 
-router.get('/allgames', function(req,res){
-    if (req.isAuthenticated()){
-        Games.find({},function(err,data){
+router.get('/allgames', function (req, res) {
+    if (req.isAuthenticated()) {
+        Games.find({}, function (err, data) {
             if (err) {
                 console.log('find allgames error: ', err);
                 res.sendStatus(500);
@@ -82,6 +82,32 @@ router.post('/', function (req, res) {
             );
         }
     })
+})
+
+router.put('/newdebate', function (req, res) {
+    console.log('info from new debate route, ', req.body);
+    
+    if (req.isAuthenticated()) {
+        let debate = {
+            description: req.body.description,
+            winner: req.body.winner,
+            pending: true
+        }
+        Games.findByIdAndUpdate(
+            req.body.gameId, 
+            {$push:{"debates": debate}}, function(err) {
+                if (err) {
+                    console.log('add new game err: ', err);
+                    res.sendStatus(500);
+                } else {
+                    console.log('debate added to game table');
+                    res.sendStatus(200);
+                }
+
+            }
+        )
+    }
+
 })
 
 module.exports = router;
