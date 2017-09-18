@@ -41,37 +41,75 @@ router.get('/logout', function (req, res) {
 });
 
 // router.get('/newgameoptions', function(req,res){
-  
+
 
 // })
 
 router.put('/updateusergames', function (req, res) {
   console.log('reached the user put route, ', req.body)
   Users.findOneAndUpdate({ username: req.body.user1 },
-    {$push:{games:req.body.gameId, opponents:req.body.user2}}, function (err, user) {
-    console.log('user on put route,' ,user)
-    if (err) return handleError(err);
-    // user.games.push(req.body.gameId);
-    user.save(function (err) {
-      if (err) {
-        return handleError(err)
-      };
-    });
-  })
+    { $push: { games: req.body.gameId, opponents: req.body.user2 } }, function (err, user) {
+      console.log('user on put route,', user)
+      if (err) return handleError(err);
+      // user.games.push(req.body.gameId);
+      user.save(function (err) {
+        if (err) {
+          return handleError(err)
+        };
+      });
+    })
   Users.findOneAndUpdate({ username: req.body.user2 },
-    {$push:{games:req.body.gameId , opponents:req.body.user1}},
+    { $push: { games: req.body.gameId, opponents: req.body.user1 } },
     function (err, user) {
-    console.log('user on put route,' ,user)
-    if (err) return handleError(err);
-    // user.games.push(req.body.gameId);
-    user.save(function (err) {
-      if (err) {
-        return handleError(err)
-      };
-    });
-  })
+      console.log('user on put route,', user)
+      if (err) return handleError(err);
+      // user.games.push(req.body.gameId);
+      user.save(function (err) {
+        if (err) {
+          return handleError(err)
+        };
+      });
+    })
   res.sendStatus(200);
 })
+
+router.put('/scoreupdate', function (req, res) {
+  Users.findOneAndUpdate({ username: req.body.user1 },
+    { $inc: { totalDebates: 1 } }, function (err, user) {
+      if (err) return handleError(err);
+
+      user.save(function (err) {
+        if (err) {
+          return handleError(err)
+        };
+      });
+    })
+  Users.findOneAndUpdate({ username: req.body.user2 },
+    { $inc: { totalDebates: 1 } },
+    function (err, user) {
+      if (err) return handleError(err);
+
+      user.save(function (err) {
+        if (err) {
+          return handleError(err)
+        };
+      });
+    })
+  Users.findOneAndUpdate({ username: req.body.winner },
+    { $inc: { totalWins: 1 } },
+    function (err, user) {
+      if (err) return handleError(err);
+      user.save(function (err) {
+        if (err) {
+          return handleError(err)
+        };
+      });
+    })
+
+  res.sendStatus(200);
+})
+
+
 
 
 module.exports = router;

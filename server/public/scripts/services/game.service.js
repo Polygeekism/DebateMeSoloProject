@@ -11,7 +11,7 @@ myApp.service('GameService', function ($http, $location, UserService) {
 
     self.getGame = function (gameId) {
         $http.get('/game/gameId/' + gameId).then(function (response) {
-            console.log('Got response from Game Get route, ', response.data);
+            //console.log('Got response from Game Get route, ', response.data);
             self.displayGame.list = response.data;
             self.selectWinner.list = [self.displayGame.list[0].user1,self.displayGame.list[0].user2]
         })
@@ -49,11 +49,11 @@ myApp.service('GameService', function ($http, $location, UserService) {
     }
 
     self.submitDebate = function(newDebate){
-        console.log('update set ', self.displayGame);
+        //console.log('update set ', self.displayGame);
         let updateSet = {gameId: self.displayGame.list[0]._id, description: newDebate.description, winner:newDebate.winner}
-        console.log('update set ', updateSet);
+        //console.log('update set ', updateSet);
         $http.put('/game/newdebate', updateSet).then(function(response){
-            console.log('got response from the newdebate server call ', response);
+            //console.log('got response from the newdebate server call ', response);
         })
     }
 

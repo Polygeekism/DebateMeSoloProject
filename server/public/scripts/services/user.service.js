@@ -7,7 +7,7 @@ myApp.service('UserService', function ($http, $location) {
   self.newGamesOptions = { list: [] };
 
   self.getuser = function () {
-    console.log('UserService -- getuser');
+    //console.log('UserService -- getuser');
     $http.get('/user').then(function (response) {
       if (response.data) {
         //console.log('whole response from server: ', response.data)
@@ -19,7 +19,7 @@ myApp.service('UserService', function ($http, $location) {
         self.userObject.games = response.data.games;
         self.userObject.opponents = response.data.opponents;
         self.userObject.winPercentage = (response.data.totalWins / response.data.totalDebates) * 100;
-        console.log('UserService -- getuser -- User Data: ', self.userObject);
+        //console.log('UserService -- getuser -- User Data: ', self.userObject);
       } else {
         //console.log('UserService -- getuser -- failure');
         // user has no session, bounce them back to the login page
@@ -31,7 +31,7 @@ myApp.service('UserService', function ($http, $location) {
     });
   }
   self.getAllUsers = function () {
-    console.log('UserService -- getAllUsers');
+    //console.log('UserService -- getAllUsers');
     $http.get('/user/allusers').then(function (response) {
       if (response.data) {
         //console.log('returned from the server getallusers route', response.data);
@@ -41,11 +41,11 @@ myApp.service('UserService', function ($http, $location) {
           self.allUsers.list[i].show = true;
         }
         let users = self.allUsers;
-        console.log('users: ', users);
+        //console.log('users: ', users);
         for (var i = 0; i < self.userObject.opponents.length; i++) {
-          console.log('made it through the first for, ', self.userObject.opponents[0])
+          //console.log('made it through the first for, ', self.userObject.opponents[0])
           for (var j = 0; j < users.list.length; j++) {
-            console.log('user in loop, ', users.list[i].username)
+            //console.log('user in loop, ', users.list[i].username)
             if (users.list[j].username == self.userObject.opponents[i]) {
               users.list[j].show = false;
             }
@@ -53,7 +53,7 @@ myApp.service('UserService', function ($http, $location) {
           }
         }
         self.newGamesOptions.list = users.list;
-        console.log('new games options, ', self.newGamesOptions)
+        //console.log('new games options, ', self.newGamesOptions)
 
       } else {
         //console.log('UserService get all users failure');
@@ -73,7 +73,15 @@ myApp.service('UserService', function ($http, $location) {
   self.updateUserGames = function (user1, user2, gameId) {
     let updateSet = { user1: user1, user2: user2, gameId: gameId };
     $http.put('/user/updateusergames/', updateSet).then(function (response) {
-      console.log('User game lists updated, ', response);
+      //console.log('User game lists updated, ', response);
+    })
+  }
+
+  self.scoreUpdate = function(user1, user2, winner){
+    let scoreUpdate = {user1:user1, user2:user2, winner:winner};
+    console.log('score update service route hit', scoreUpdate);
+    $http.put('/user/scoreupdate/', scoreUpdate).then(function(response){
+      console.log('score update route complete');
     })
   }
 
