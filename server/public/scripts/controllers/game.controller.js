@@ -20,7 +20,12 @@ myApp.controller('GameController',['GameService', 'UserService', '$routeParams',
     self.getCurrentGame($routeParams.gameId);
 
     self.submitDebate = function(newDebate){
-        console.log('displaygame, ', self.displayGame.list[0].user1);
+        if(self.displayGame.list[0].user1 == newDebate.winner){
+            newDebate.userScore = 'user1score';
+        }else{
+            newDebate.userScore = 'user2score';
+        }
+        //console.log('userscore, ', newDebate.userScore);
         if(newDebate.description === '' || newDebate.winner === '') {
             window.alert("Enter description and select winner!");
           }else{

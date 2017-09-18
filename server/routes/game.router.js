@@ -86,16 +86,30 @@ router.post('/', function (req, res) {
 
 router.put('/newdebate', function (req, res) {
     console.log('info from new debate route, ', req.body);
-    
+
     if (req.isAuthenticated()) {
         let debate = {
             description: req.body.description,
             winner: req.body.winner,
             pending: true
         }
+        if (req.body.userscore == 'user1score') {
+            var userScore = {
+                user1score: 1
+            }
+        } else {
+            var userScore = {
+                user2score: 1
+            }
+        }
+        console.log('userscore, ', userScore)
+
         Games.findByIdAndUpdate(
-            req.body.gameId, 
-            {$push:{"debates": debate}}, function(err) {
+            req.body.gameId,
+            {
+                $push: { "debates": debate }, $inc: userScore
+            }, function (err) {
+
                 if (err) {
                     console.log('add new game err: ', err);
                     res.sendStatus(500);
@@ -106,6 +120,7 @@ router.put('/newdebate', function (req, res) {
 
             }
         )
+
     }
 
 })

@@ -6,17 +6,17 @@ myApp.service('GameService', function ($http, $location, UserService) {
     self.usersGames = { list: [] };
     self.displayGame = { list: [] };
     self.allGames = { list: [] };
-    self.selectWinner = {list:[]}
+    self.selectWinner = { list: [] }
 
 
     self.getGame = function (gameId) {
         $http.get('/game/gameId/' + gameId).then(function (response) {
             //console.log('Got response from Game Get route, ', response.data);
             self.displayGame.list = response.data;
-            self.selectWinner.list = [self.displayGame.list[0].user1,self.displayGame.list[0].user2]
+            self.selectWinner.list = [self.displayGame.list[0].user1, self.displayGame.list[0].user2]
         })
     }
-    
+
 
     //self.getGameDetail = function(){};
     self.getUsersGames = function () {
@@ -48,11 +48,16 @@ myApp.service('GameService', function ($http, $location, UserService) {
         })
     }
 
-    self.submitDebate = function(newDebate){
+    self.submitDebate = function (newDebate) {
         //console.log('update set ', self.displayGame);
-        let updateSet = {gameId: self.displayGame.list[0]._id, description: newDebate.description, winner:newDebate.winner}
+        let updateSet = {
+            gameId: self.displayGame.list[0]._id,
+            description: newDebate.description,
+            winner: newDebate.winner,
+            userscore: newDebate.userScore
+        }
         //console.log('update set ', updateSet);
-        $http.put('/game/newdebate', updateSet).then(function(response){
+        $http.put('/game/newdebate', updateSet).then(function (response) {
             //console.log('got response from the newdebate server call ', response);
         })
     }
