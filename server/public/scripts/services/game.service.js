@@ -1,4 +1,4 @@
-myApp.service('GameService', function ($http, $location, UserService) {
+myApp.service('GameService', function ($http, $location, UserService,$routeParams) {
     console.log('Game Service Created');
     var self = this;
 
@@ -58,6 +58,8 @@ myApp.service('GameService', function ($http, $location, UserService) {
         }
         //console.log('update set ', updateSet);
         $http.put('/game/newdebate', updateSet).then(function (response) {
+            console.log('$routeParams on game service', $routeParams);
+            self.getGame($routeParams.gameId);
             //console.log('got response from the newdebate server call ', response);
         })
     }
