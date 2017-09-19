@@ -1,7 +1,7 @@
 myApp.controller('UserController', ['UserService', 'GameService', '$routeParams', function (UserService, GameService, $routeParams) {
   console.log('UserController created');
   var self = this;
-  self.userService = UserService;
+  //self.userService = UserService;
   self.userObject = UserService.userObject;
   
   //console.log('$routeParams', $routeParams.id);

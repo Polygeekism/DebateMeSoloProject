@@ -1,11 +1,11 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
+<div class="uesrContainer">
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
-    <h2 id="totalPoints">Total Points: {{uc.userObject.totalWins}}</h2>
-    <h2 id="winPercentage">Win Percentage: {{uc.userObject.winPercentage | number:2}}%</h2>
+    <h2 class="userInfo">Total Points: {{uc.userObject.totalWins}}</h2>
+    <h2 class="userInfo">Win Percentage: {{uc.userObject.winPercentage | number:2}}%</h2>
     <ul>
-        <h2>Games</h2>
+        <h2 class='gamesHeading'>Games</h2>
         <div id='gameDiv' layout='column' layout-align='start'>
             <li class='userGames' ng-repeat='game in uc.usersGames.list'>
                 <a class='userGameList' ng-href='/#/game/{{game._id}}'>
