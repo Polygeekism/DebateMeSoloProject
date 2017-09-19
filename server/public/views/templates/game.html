@@ -6,7 +6,9 @@
         <h2>{{gc.displayGame.list[0].user1score}}</h2>
     </div>
     <div id='gameInputs' layout='column'>
-        <input id='descriptionInput' type='text' placeholder='Debate description' ng-model='gc.debateInformation.description'>
+        <textarea id='descriptionInput' type='text' placeholder='Debate description' ng-model='gc.debateInformation.description'>
+        
+        </textarea>
         <select ng-model='gc.debateInformation.winner'>
             <option ng-repeat='player in gc.selectWinner.list' value='{{player}}'>{{player}}</option></select>
         <button ng-click='gc.submitDebate(gc.debateInformation)'>Submit</button>
