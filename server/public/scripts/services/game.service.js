@@ -2,25 +2,23 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
     console.log('Game Service Created');
     var self = this;
 
-    self.currentGame = { list: [] };
-    self.usersGames = { list: [] };
-    self.displayGame = { list: [] };
-    self.allGames = { list: [] };
-    self.selectWinner = { list: [] }
+    
+    self.usersGames = { list: [] };//all the game scoreboards the requested user is a part of
+    self.displayGame = { list: [] };//game that will be displayed on game view
+    //self.allGames = { list: [] };//right now this is not needed
+    self.selectWinner = { list: [] }//used to populate the select dropdown
 
-
+    //get a game from database based on passed in ID
     self.getGame = function (gameId) {
         $http.get('/game/gameId/' + gameId).then(function (response) {
-            //console.log('Got response from Game Get route, ', response.data);
             self.displayGame.list = response.data;
             self.selectWinner.list = [self.displayGame.list[0].user1, self.displayGame.list[0].user2]
         })
     }
 
-
-    //self.getGameDetail = function(){};
+    //get all games for the logged in user. 
     self.getUsersGames = function () {
-        //console.log('userId on game service: ', userId);
+        
         $http.get('/game/usergames').then(function (response) {
 
             self.usersGames.list = response.data;
@@ -28,22 +26,23 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
         })
     }
 
-    self.getAllGames = function () {
-        $http.get('/game/allgames').then(function (response) {
-            self.allGames.list = response.data;
-        })
-    }
+    // self.getAllGames = function () {
+    //     $http.get('/game/allgames').then(function (response) {
+    //         self.allGames.list = response.data;
+    //     })
+    // }
 
     self.createGame = function (user1, user2) {
+        //create object with both users to create scoreboard on database
         let users = { user1: user1, user2: user2 }
         $http.post('/game', users).then(function (response) {
-            console.log('Got response from Game Post route: ', response.data);
-            self.currentGame.list = response.data;
-            console.log('current game on service, ', self.currentGame.list[0]._id);
-            window.location = '#/game/' + self.currentGame.list[0]._id;
+            //response is the game/scoreboard that was saved.
+            self.displayGame.list = response.data;
+            //navigate to the game screen with the proper routing params
+            window.location = '#/game/' + self.displayGame.list[0]._id;
 
-            //callback to send new game to both users.
-            UserService.updateUserGames(user1, user2, self.currentGame.list[0]._id);
+            //callback to send new game to both users documents
+            UserService.updateUserGames(user1, user2, self.displayGame.list[0]._id);
 
         })
     }

@@ -2,21 +2,20 @@ myApp.controller('GameController',['GameService', 'UserService', '$routeParams',
     console.log('Game Controller Loaded');
     var self = this;
 
+    
     self.debateInformation = {description: '',
-    winner: ''};
-    self.selectWinner = [];
-    self.displayGame = {list:[]};
+    winner: ''};//object for updating the game document
+    self.selectWinner = [];//used to populate the select dropdown
+    self.displayGame = {list:[]};//display the current game
 
-    console.log('$routeParams', $routeParams.gameId);
-    //console.log(self.currentGame);
+    //using the route params fetch the current game scoreboard
     self.getCurrentGame = function(gameId){
         GameService.getGame(gameId);
         self.displayGame = GameService.displayGame;
         console.log('current game on controller, ',self.displayGame);
         self.selectWinner = GameService.selectWinner;
-
-
     }
+
     self.getCurrentGame($routeParams.gameId);
 
     self.submitDebate = function(newDebate){
