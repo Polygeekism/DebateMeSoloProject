@@ -48,7 +48,7 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
     }
 
     self.submitDebate = function (newDebate) {
-        //console.log('update set ', self.displayGame);
+        //create the object to send to the update route
         let updateSet = {
             gameId: self.displayGame.list[0]._id,
             description: newDebate.description,
@@ -57,11 +57,12 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
         }
         //console.log('update set ', updateSet);
         $http.put('/game/newdebate', updateSet).then(function (response) {
-            console.log('$routeParams on game service', $routeParams);
+            //console.log('$routeParams on game service', $routeParams);
+            //get the game to refresh scores based on the route params
             self.getGame($routeParams.gameId);
-            //console.log('got response from the newdebate server call ', response);
+           
         })
     }
 
-    self.getAllGames();
+    //self.getAllGames();
 })

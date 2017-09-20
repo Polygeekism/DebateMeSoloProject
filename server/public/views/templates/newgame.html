@@ -1,19 +1,28 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
     <h1>New game page</h1>
-    <table>
-        <thead>
-            <th>USer</th><th>Total Wins</th><th>Win Percentage</th>
-        </thead>
-        <tbody>
-            <tr ng-repeat="user in ngc.newGamesOptions.list" ng-show="user.show">
-                <td>{{user.username}}</td>
-                <td>{{user.totalWins}}</td>   
-                <td>{{user.winPercentage | number: 0}}%</td> 
-                <td><button ng-click="ngc.startNewGame(ngc.userObject.userName, user.username)">Start New Game</button></td>
-        </tbody>   
-    </table>
+    <div class='newGameDisplay mat-elevation-z8'>
+        <div class='filterHeader'>
+            <md-form-field floatPlaceHolder='never'>
+                <input mdInput #filter placeholder='Filter users'>
+            </md-form-field>
+            <md-table #table></md-table>
+        </div>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+                <th>User</th>
+                <th>Total Wins</th>
+                <th>Win Percentage</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in ngc.newGamesOptions.list" grid-item>
+                    <td>{{user.username}}</td>
+                    <td>{{user.totalWins}}</td>
+                    <td>{{user.winPercentage | number: 0}}%</td>
+                    <td><button ng-click="ngc.startNewGame(ngc.userObject.userName, user.username)">Start New Game</button></td>
+            </tbody>
+        </table>
 
 
-    <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
-</div>
+        <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+    </div>

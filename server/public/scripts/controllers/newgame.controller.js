@@ -11,10 +11,9 @@ myApp.controller('NewGameController', ['UserService', 'GameService', '$routePara
 
     
     //need to bring in list of all users
-    UserService.getAllUsers();
-    console.log('all games list, ', self.allUsers,'new game options', self.newGamesOptions)
-
-    console.log('user opponent: ', self.userObject.opponents.length)
+    //UserService.getAllUsers();
+    //console.log('all games list, ', self.allUsers,'new game options', self.newGamesOptions)
+    UserService.getNewGameUsers();
 
 
     //need to handle clicks for new scoreboard

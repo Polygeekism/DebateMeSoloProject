@@ -31,6 +31,18 @@ router.get('/allusers', function (req, res) {
   });
 
 });
+router.get('/newgameusers', function(req,res){
+  let opponentsArray = req.user.opponents;
+  Users.find({username:{$nin:opponentsArray}}, function(err,data){
+    if (err) {
+      console.log('find users error', err)
+      res.sendStatus(500);
+    } else {
+      console.log('received users', data);
+      res.send(data);
+    }
+  })  
+})
 
 // clear all server session information about this user
 router.get('/logout', function (req, res) {
@@ -72,6 +84,7 @@ router.put('/updateusergames', function (req, res) {
     })
   res.sendStatus(200);
 })
+
 
 router.put('/scoreupdate', function (req, res) {
   Users.findOneAndUpdate({ username: req.body.user1 },

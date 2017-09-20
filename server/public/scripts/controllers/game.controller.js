@@ -1,41 +1,45 @@
-myApp.controller('GameController',['GameService', 'UserService', '$routeParams', function(GameService, UserService, $routeParams){
+myApp.controller('GameController', ['GameService', 'UserService', '$routeParams', function (GameService, UserService, $routeParams) {
     console.log('Game Controller Loaded');
     var self = this;
 
-    
-    self.debateInformation = {description: '',
-    winner: ''};//object for updating the game document
+
+    self.debateInformation = {
+        description: '',
+        winner: ''
+    };//object for updating the game document
     self.selectWinner = [];//used to populate the select dropdown
-    self.displayGame = {list:[]};//display the current game
+    self.displayGame = { list: [] };//display the current game
 
     //using the route params fetch the current game scoreboard
-    self.getCurrentGame = function(gameId){
+    self.getCurrentGame = function (gameId) {
         GameService.getGame(gameId);
         self.displayGame = GameService.displayGame;
-        console.log('current game on controller, ',self.displayGame);
+        console.log('current game on controller, ', self.displayGame);
         self.selectWinner = GameService.selectWinner;
     }
 
     self.getCurrentGame($routeParams.gameId);
 
-    self.submitDebate = function(newDebate){
-        if(self.displayGame.list[0].user1 == newDebate.winner){
+    self.submitDebate = function (newDebate) {
+        //set a string variable for updating the correct document on server side
+        if (self.displayGame.list[0].user1 == newDebate.winner) {
             newDebate.userScore = 'user1score';
-        }else{
+        } else {
             newDebate.userScore = 'user2score';
         }
-        //console.log('userscore, ', newDebate.userScore);
-        if(newDebate.description === '' || newDebate.winner === '') {
+        //check to make sure the fields have values
+        if (newDebate.description === '' || newDebate.winner === '') {
             window.alert("Enter description and select winner!");
-          }else{
-              
-              GameService.submitDebate(newDebate);
-              UserService.scoreUpdate(self.displayGame.list[0].user1, self.displayGame.list[0].user2, newDebate.winner)
-              self.debateInformation = {description: '',
-              winner: ''};
-          }
+        } else {
+            //call the game service to update the scoreboard
+            GameService.submitDebate(newDebate);
+            //call the user service to update the users stats
+            UserService.scoreUpdate(self.displayGame.list[0].user1, self.displayGame.list[0].user2, newDebate.winner)
+            //reset the page for another debate topic.
+            self.debateInformation = {
+                description: '',
+                winner: ''
+            };
+        }
     }
-
-    //GameService.getGame();
-    //GameService.createGame();
 }])
