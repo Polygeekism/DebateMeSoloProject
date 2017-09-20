@@ -60,7 +60,7 @@ h1{
   -webkit-text-fill-color: transparent;
   color: #fff;
   font-family: 'Permanent Marker', cursive;
-  font-size: 29px;
+  font-size: 35px;
 }
 
 /*===========end header styling ==============*/
@@ -71,6 +71,7 @@ h1{
   background-color: #13293D;
   width: 100%;
   border-radius: 0px;
+  box-shadow:         inset 0 0 10px #000000;
 }
 
 .header {
@@ -101,10 +102,12 @@ li a:hover {
 /*======= User view styling ========*/
 
 #welcome{
-  font-size: 25px;
+  font-size: 40px;
+  margin: 10px 0;
 }
 .userContainer{
-  padding-left: 10px;
+  margin:10px 5px 15px 20px;
+  font-family: 'Encode Sans Condensed', sans-serif;
 }
 
 .userGameList{
@@ -121,9 +124,80 @@ li a:hover {
   text-decoration: underline;
 
 }
-
+.userInfo{
+  padding:2px;
+  margin:2px;
+  font-family: 'Encode Sans Condensed', sans-serif;
+}
 
 /* Change the link color to #111 (black) on hover */
+
+/*=======New Game view styling========*/
+.newGameContainer{
+  margin:10px 5px 15px 20px;
+  width:100%;  
+}
+.gameTable{
+  width:100vw;
+  font-size:20px;
+}
+
+.newGameButton{
+  background: #096B72;
+  background-image: -webkit-linear-gradient(top, #096B72, #1D4977);
+  background-image: -moz-linear-gradient(top, #096B72, #1D4977);
+  background-image: -ms-linear-gradient(top, #096B72, #1D4977);
+  background-image: -o-linear-gradient(top, #096B72, #1D4977);
+  background-image: linear-gradient(to bottom, #096B72, #1D4977);
+  -webkit-border-radius: 15;
+  -moz-border-radius: 15;
+  border-radius: 15px;
+  font-family: 'Encode Sans Condensed';
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  width: 150px;
+  height:40px;
+}
+
+.newGameButton:hover{
+  background: #3E92CC;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3E92CC, #096B72);
+  text-decoration: none;
+}
+.logOut{
+  background: #096B72;
+  background-image: -webkit-linear-gradient(top, #096B72, #1D4977);
+  background-image: -moz-linear-gradient(top, #096B72, #1D4977);
+  background-image: -ms-linear-gradient(top, #096B72, #1D4977);
+  background-image: -o-linear-gradient(top, #096B72, #1D4977);
+  background-image: linear-gradient(to bottom, #096B72, #1D4977);
+  -webkit-border-radius: 15;
+  -moz-border-radius: 15;
+  border-radius: 15px;
+  font-family: 'Encode Sans Condensed';
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  width: 90px;
+  height:40px;
+}
+
+.logOut:hover{
+  background: #3E92CC;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3E92CC, #096B72);
+  text-decoration: none;
+}
 
 #descriptionInput{
   height: 150px;

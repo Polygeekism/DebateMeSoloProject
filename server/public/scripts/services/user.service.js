@@ -20,7 +20,7 @@ myApp.service('UserService', function ($http, $location) {
         self.userObject.opponents = response.data.opponents;
         //calculating a win percentage based on total debates and total wins
         self.userObject.winPercentage = (response.data.totalWins / response.data.totalDebates) * 100;
-        self.newGamesOptions.list =  [];
+        self.newGamesOptions.list = [];
         console.log('reset newgamesoptions');
 
       } else {
@@ -56,6 +56,9 @@ myApp.service('UserService', function ($http, $location) {
     $http.get('/user/newgameusers').then(function (response) {
       console.log('response from newgame users route, ', response);
       self.newGamesOptions.list = response.data
+      for (i = 0; i < self.newGamesOptions.list.length; i++) {
+        self.newGamesOptions.list[i].winPercentage = (self.newGamesOptions.list[i].totalWins) / (self.newGamesOptions.list[i].totalDebates) * 100;
+      }
       console.log('new game options, ', self.newGamesOptions.list);
     })
   }
