@@ -1,6 +1,7 @@
 myApp.controller('NewGameController', ['UserService', 'GameService', '$routeParams', function (UserService, GameService, $routeParams) {
     //console.log('NewGameController created');
     var self = this;
+    
 
     self.allUsers = UserService.allUsers;
     self.userObject = UserService.userObject;
