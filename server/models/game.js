@@ -10,7 +10,8 @@ var GameSchema = new Schema({
     debates: [{
         description: { type: String },
         winner: { type: String },
-        pending: { type: Boolean, default: true }
+        pending: { type: Boolean, default: true },
+        submittedby: {type: String}
     }]
 })
 

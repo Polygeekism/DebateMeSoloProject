@@ -7,6 +7,7 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
     self.displayGame = { list: [] };//game that will be displayed on game view
     //self.allGames = { list: [] };//right now this is not needed
     self.selectWinner = { list: [] }//used to populate the select dropdown
+    self.gamesForReview = {list:[]};
 
     //get a game from database based on passed in ID
     self.getGame = function (gameId) {
@@ -23,6 +24,13 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
 
             self.usersGames.list = response.data;
             console.log('Got response from getUsersGames: ', self.usersGames);
+        })
+    }
+
+    self.getGamesForReview = function(){
+        $http.get('/game/reviewgames').then(function(response){
+            console.log('response from review games, ', response);
+            //self.gamesForReview.list = response.data;
         })
     }
 

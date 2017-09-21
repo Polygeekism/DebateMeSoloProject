@@ -52,6 +52,11 @@ router.get('/usergames', function (req, res) {
     }
 })
 
+router.get('/reviewgames', function(req,res){
+    console.log('reviewgames route hit');
+    res.sendStatus(200);
+})
+
 router.post('/', function (req, res) {
     console.log('router post route hit');
     console.log('req.body from post route: ', req.body);

@@ -49,9 +49,9 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/confirm', {
-      templateUrl: '/views/templates/confirm.html',
-      contorller: 'ConfirmController as cn',
+    .when('/review', {
+      templateUrl: '/views/templates/review.html',
+      controller: 'ReviewController as rv',
       resolve: {
         getuser: function (UserService) {
           return UserService.getuser();
