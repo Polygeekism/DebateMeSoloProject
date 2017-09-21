@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 
 /// Routes ///
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function ($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config')
   $routeProvider
@@ -17,34 +17,43 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
     })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
-      controller: 'InfoController as ic ',
+      controller: 'InfoController as ic',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
     })
-    .when('/newgame',{
+    .when('/newgame', {
       templateUrl: '/views/templates/newgame.html',
       controller: 'NewGameController as ngc',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
     })
-    .when('/game/:gameId',{
+    .when('/game/:gameId', {
       templateUrl: '/views/templates/game.html',
       controller: 'GameController as gc',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/confirm', {
+      templateUrl: '/views/templates/confirm.html',
+      contorller: 'ConfirmController as cn',
+      resolve: {
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
