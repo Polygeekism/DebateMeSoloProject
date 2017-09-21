@@ -1,4 +1,11 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-<h1>Games to be reviewed</h1>
-{{rv}}
+<h1>Debates to be reviewed</h1>
+
+<ul ng-repeat='scoreboard in rv.gamesForReview.list'>
+    <li ng-repeat='debate in scoreboard.debates' ng-if="debate.submittedby != rv.userObject.userName ">{{debate}}</li>
+
+</ul> -->
+
+
+<!-- <li>{{debate}}</li>

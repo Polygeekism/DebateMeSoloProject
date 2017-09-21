@@ -56,16 +56,16 @@ router.get('/reviewgames', function (req, res) {
     console.log('reviewgames route hit');
     if (req.isAuthenticated()) {
         let gamesArray = req.user.games;
-        let currentUser = req.user.username;
+        let currentUser = [req.user.username];
         // let reviewArray = [];
         Games.find({
             _id: { $in: gamesArray },
             'debates.pending': true,
-            'debates.submittedby': { $nin: currentUser },
 
         },
-            { debates: 1},
+            { debates: 1 },
             function (err, data) {
+                
                 console.log(data);
                 res.send(data);
             })

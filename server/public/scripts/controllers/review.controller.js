@@ -2,6 +2,7 @@ myApp.controller('ReviewController', ['GameService', 'UserService', '$routeParam
     console.log('Review controller Loaded');
 
     var self = this;
+    self.userObject = UserService.userObject;
     self.gamesForReview = GameService.gamesForReview;
 
     self.getGamesForReview = function(){
