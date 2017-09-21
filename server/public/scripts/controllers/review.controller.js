@@ -9,16 +9,15 @@ myApp.controller('ReviewController', ['GameService', 'UserService', '$routeParam
         GameService.getGamesForReview();
         console.log('get games for review started,');
     }
-    self.approveDebate = function (scoreBoardId, debateId, winner) {
+    self.approveDebate = function (scoreBoardId, debateId, winner,user1,user2) {
         self.reviewDebate = {
             gameId: scoreBoardId,
-            deabtesId: debateId
+            debatesId: debateId,
+            user1:user1,
+            user2:user2,
+            winner: winner
         };
-        if (self.userObject.userName == winner) {
-            self.reviewDebate.userScore = 'user1score';
-        } else {
-            self.reviewDebate.userScore = 'user2score';
-        }
+        
 
         console.log('approve button clicked, ', self.reviewDebate)
         GameService.approveDebate(self.reviewDebate);
@@ -28,4 +27,5 @@ myApp.controller('ReviewController', ['GameService', 'UserService', '$routeParam
         console.log('deny button clicked, ', gameId, debateId)
     }
     self.getGamesForReview();
+    console.log('games for review, ', self.gamesForReview);
 }])

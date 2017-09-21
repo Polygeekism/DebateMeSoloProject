@@ -82,7 +82,7 @@ myApp.service('UserService', function ($http, $location) {
   //update both users total debates and the winner
   self.scoreUpdate = function (user1, user2, winner) {
     let scoreUpdate = { user1: user1, user2: user2, winner: winner };
-    //console.log('score update service route hit', scoreUpdate);
+    console.log('score update service route hit', scoreUpdate);
     $http.put('/user/scoreupdate/', scoreUpdate).then(function (response) {
       //console.log('score update route complete');
     })

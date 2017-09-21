@@ -63,7 +63,6 @@ router.get('/reviewgames', function (req, res) {
             'debates.pending': true,
 
         },
-            { debates: 1 },
             function (err, data) {
 
                 console.log(data);
@@ -110,8 +109,59 @@ router.post('/', function (req, res) {
         }
     })
 })
-router.put('/approvegame', function(req,res){
-    
+router.put('/approvedebate', function (req, res) {
+    if (req.isAuthenticated()) {
+        let userScore = {};
+        let debateId = req.body.debatesId;
+        let gameId = req.body.gameId;
+
+
+        if (req.body.winner == req.body.user1) {
+            userScore = {
+                user1score: 1
+            }
+        } else {
+            userScore = {
+                user2score: 1
+            }
+        }
+        Games.findByIdAndUpdate(req.body.gameId,
+            {
+                $inc: userScore
+            },
+            function (err) {
+
+                if (err) {
+                    //console.log('add new game err: ', err);
+                    res.sendStatus(500);
+                } else {
+                    
+                    Games.findOneAndUpdate({ _id: gameId, 'debates._id': debateId },
+                        {
+                            $set: { 'debates.$.pending': false }
+                        },
+                        function (err, game) {
+                            console.log('did we make it to the second command')
+                            if (err) return handleError(err);
+                            //console.log('add new game err: ', err);
+
+                            game.save(function (err) {
+                                if (err) {
+                                    return handleError(err)
+                                };
+                            });
+
+                            //console.log('debate added to game table');
+                            res.sendStatus(200);
+
+                        })
+
+                }
+
+            }
+        )
+    }
+
 })
 router.put('/newdebate', function (req, res) {
     //console.log('info from new debate route, ', req.body);
@@ -122,15 +172,6 @@ router.put('/newdebate', function (req, res) {
             winner: req.body.winner,
             pending: true,
             submittedby: req.user.username
-        }
-        if (req.body.userscore == 'user1score') {
-            var userScore = {
-                user1score: 1
-            }
-        } else {
-            var userScore = {
-                user2score: 1
-            }
         }
         //console.log('userscore, ', userScore)
 

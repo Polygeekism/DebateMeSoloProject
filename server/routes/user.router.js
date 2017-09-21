@@ -87,6 +87,7 @@ router.put('/updateusergames', function (req, res) {
 
 
 router.put('/scoreupdate', function (req, res) {
+  console.log('hit the update user route', req.body)
   Users.findOneAndUpdate({ username: req.body.user1 },
     { $inc: { totalDebates: 1 } }, function (err, user) {
       if (err) return handleError(err);

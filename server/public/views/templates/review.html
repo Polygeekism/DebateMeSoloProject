@@ -15,7 +15,7 @@
             <td>{{debate.winner}}</td>
             <td>{{debate.description}}</td>
             <td>
-                <md-button ng-click='rv.approveDebate(scoreboard._id, debate._id, debate.winner)'>Approve</md-button>
+                <md-button ng-click='rv.approveDebate(scoreboard._id, debate._id, debate.winner, scoreboard.user1, scoreboard.user2)'>Approve</md-button>
                 <md-button ng-click='rv.denyDebate(scoreboard._id, debate._id, debate.winner)'>Deny</md-button>
             </td>
     </tbody>

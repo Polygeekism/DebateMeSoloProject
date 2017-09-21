@@ -56,7 +56,10 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
     }
     self.approveDebate = function(reviewDebate){
         console.log('reviewdebate on service', reviewDebate);
-        
+        $http.put('/game/approvedebate', reviewDebate).then(function(response){
+            UserService.scoreUpdate(reviewDebate.user1, reviewDebate.user2, reviewDebate.winner);
+            self.getGamesForReview();
+        })
 
     }
 
