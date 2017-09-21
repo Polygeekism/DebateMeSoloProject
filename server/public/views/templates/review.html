@@ -3,7 +3,11 @@
 <h1>Debates to be reviewed</h1>
 
 <ul ng-repeat='scoreboard in rv.gamesForReview.list'>
-    <li ng-repeat='debate in scoreboard.debates' ng-if="debate.submittedby != rv.userObject.userName ">{{debate}}</li>
+    <li ng-repeat='debate in scoreboard.debates' ng-if="debate.submittedby != rv.userObject.userName ">
+        Winner: {{debate.winner}} Description: {{debate.description}}
+        <md-button>Approve</md-button>
+        <md-button>Deny</md-button>
+    </li>
 
 </ul> -->
 
