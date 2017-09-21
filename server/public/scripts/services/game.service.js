@@ -54,6 +54,11 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
 
         })
     }
+    self.approveDebate = function(reviewDebate){
+        console.log('reviewdebate on service', reviewDebate);
+        
+
+    }
 
     self.submitDebate = function (newDebate) {
         //create the object to send to the update route

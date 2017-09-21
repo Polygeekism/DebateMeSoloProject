@@ -15,17 +15,11 @@
             <td>{{debate.winner}}</td>
             <td>{{debate.description}}</td>
             <td>
-                <md-button ng-click='rv.approveGame(scoreboard._id)'>Approve</md-button>
-                <md-button ng-click='rv.denyGame(scoreboard._id, debate._id)'>Deny</md-button>
+                <md-button ng-click='rv.approveDebate(scoreboard._id, debate._id, debate.winner)'>Approve</md-button>
+                <md-button ng-click='rv.denyDebate(scoreboard._id, debate._id, debate.winner)'>Deny</md-button>
             </td>
     </tbody>
 </table>
-
-<ul ng-repeat='scoreboard in rv.gamesForReview.list'>
-    <li>{{scoreboard}}</li>
-</ul>
-
-
 
 <!-- <ul ng-repeat='scoreboard in rv.gamesForReview.list'>
     <li ng-repeat='debate in scoreboard.debates' ng-if="debate.submittedby != rv.userObject.userName ">

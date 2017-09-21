@@ -65,7 +65,7 @@ router.get('/reviewgames', function (req, res) {
         },
             { debates: 1 },
             function (err, data) {
-                
+
                 console.log(data);
                 res.send(data);
             })
@@ -110,7 +110,9 @@ router.post('/', function (req, res) {
         }
     })
 })
-
+router.put('/approvegame', function(req,res){
+    
+})
 router.put('/newdebate', function (req, res) {
     //console.log('info from new debate route, ', req.body);
 
