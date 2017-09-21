@@ -30,7 +30,7 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
     self.getGamesForReview = function(){
         $http.get('/game/reviewgames').then(function(response){
             console.log('response from review games, ', response);
-            //self.gamesForReview.list = response.data;
+            self.gamesForReview.list = response.data;
         })
     }
 
