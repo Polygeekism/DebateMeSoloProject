@@ -21,7 +21,7 @@ router.get('/allgames', function (req, res) {
     if (req.isAuthenticated()) {
         Games.find({}, function (err, data) {
             if (err) {
-               // console.log('find allgames error: ', err);
+                // console.log('find allgames error: ', err);
                 res.sendStatus(500);
             } else {
                 //console.log('found data from allgames', data);
@@ -52,15 +52,23 @@ router.get('/usergames', function (req, res) {
     }
 })
 
-router.get('/reviewgames', function(req,res){
+router.get('/reviewgames', function (req, res) {
     console.log('reviewgames route hit');
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         let gamesArray = req.user.games;
+        let currentUser = req.user.username;
         // let reviewArray = [];
-        Games.find({'debates.pending': true, _id:{$in:gamesArray}} , function(err,data){
-            console.log(data);
-            res.send(data);
-        })
+        Games.find({
+            _id: { $in: gamesArray },
+            'debates.pending': true,
+            'debates.submittedby': { $nin: currentUser },
+
+        },
+            { debates: 1},
+            function (err, data) {
+                console.log(data);
+                res.send(data);
+            })
         //{'tags.text': {$in: tagTexts}}
         // Games.find({_id:{$in:gamesArray}}, {debates:1, _id:0}, function(err,data){
         //     console.log(data[0]);
@@ -68,7 +76,7 @@ router.get('/reviewgames', function(req,res){
         //     res.send(data);
         // })
     }
-   
+
 })
 
 router.post('/', function (req, res) {
