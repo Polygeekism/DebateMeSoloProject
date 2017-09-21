@@ -2,14 +2,36 @@
 
 <h1>Debates to be reviewed</h1>
 
+<table class="reviewTable mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th class='tableHead'>Winner</th>
+            <th class='tableHead'>Description</th>
+            <th class='tableHead'>Approve/Deny</th>
+    </thead>
+    <tbody ng-repeat='scoreboard in rv.gamesForReview.list'>
+        <tr ng-repeat="debate in scoreboard.debates" ng-if="debate.submittedby != rv.userObject.userName " grid-item>
+            
+            <td>{{debate.winner}}</td>
+            <td>{{debate.description}}</td>
+            <td>
+                <md-button ng-click='rv.approveGame(scoreboard._id)'>Approve</md-button>
+                <md-button ng-click='rv.denyGame(scoreboard._id, debate._id)'>Deny</md-button>
+            </td>
+    </tbody>
+</table>
+
 <ul ng-repeat='scoreboard in rv.gamesForReview.list'>
+    <li>{{scoreboard}}</li>
+</ul>
+
+
+
+<!-- <ul ng-repeat='scoreboard in rv.gamesForReview.list'>
     <li ng-repeat='debate in scoreboard.debates' ng-if="debate.submittedby != rv.userObject.userName ">
         Winner: {{debate.winner}} Description: {{debate.description}}
         <md-button>Approve</md-button>
         <md-button>Deny</md-button>
     </li>
 
-</ul> -->
-
-
-<!-- <li>{{debate}}</li>
+</ul>  -->

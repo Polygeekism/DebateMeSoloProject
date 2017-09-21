@@ -7,7 +7,14 @@ myApp.controller('ReviewController', ['GameService', 'UserService', '$routeParam
 
     self.getGamesForReview = function(){
         GameService.getGamesForReview();
-        console.log('get games for review started');
+        console.log('get games for review started,' );
+    }
+    self.approveGame = function(gameId){
+        console.log('approve button clicked, ', gameId)
+
+    }
+    self.denyGame = function(gameId, debateId){
+        console.log('deny button clicked, ', gameId, debateId)
     }
     self.getGamesForReview();
 }])
