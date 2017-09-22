@@ -23,8 +23,14 @@ myApp.controller('ReviewController', ['GameService', 'UserService', '$routeParam
         GameService.approveDebate(self.reviewDebate);
 
     }
+
     self.denyDebate = function (gameId, debateId) {
         console.log('deny button clicked, ', gameId, debateId)
+        self.denyObject = {
+            gamedId: gameId,
+            debatesId: debateId
+        }
+        GameService.denyDebate(self.denyObject);
     }
     self.getGamesForReview();
     console.log('games for review, ', self.gamesForReview);

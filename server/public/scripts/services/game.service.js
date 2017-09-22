@@ -1,13 +1,13 @@
-myApp.service('GameService', function ($http, $location, UserService,$routeParams) {
+myApp.service('GameService', function ($http, $location, UserService, $routeParams) {
     console.log('Game Service Created');
     var self = this;
 
-    
+
     self.usersGames = { list: [] };//all the game scoreboards the requested user is a part of
     self.displayGame = { list: [] };//game that will be displayed on game view
     //self.allGames = { list: [] };//right now this is not needed
     self.selectWinner = { list: [] }//used to populate the select dropdown
-    self.gamesForReview = {list:[]};
+    self.gamesForReview = { list: [] };
 
     //get a game from database based on passed in ID
     self.getGame = function (gameId) {
@@ -19,7 +19,7 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
 
     //get all games for the logged in user. 
     self.getUsersGames = function () {
-        
+
         $http.get('/game/usergames').then(function (response) {
 
             self.usersGames.list = response.data;
@@ -27,8 +27,8 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
         })
     }
 
-    self.getGamesForReview = function(){
-        $http.get('/game/reviewgames').then(function(response){
+    self.getGamesForReview = function () {
+        $http.get('/game/reviewgames').then(function (response) {
             console.log('response from review games, ', response);
             self.gamesForReview.list = response.data;
         })
@@ -54,14 +54,6 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
 
         })
     }
-    self.approveDebate = function(reviewDebate){
-        console.log('reviewdebate on service', reviewDebate);
-        $http.put('/game/approvedebate', reviewDebate).then(function(response){
-            UserService.scoreUpdate(reviewDebate.user1, reviewDebate.user2, reviewDebate.winner);
-            self.getGamesForReview();
-        })
-
-    }
 
     self.submitDebate = function (newDebate) {
         //create the object to send to the update route
@@ -76,9 +68,19 @@ myApp.service('GameService', function ($http, $location, UserService,$routeParam
             //console.log('$routeParams on game service', $routeParams);
             //get the game to refresh scores based on the route params
             self.getGame($routeParams.gameId);
-           
+
         })
     }
+    self.approveDebate = function (reviewDebate) {
+        console.log('reviewdebate on service', reviewDebate);
+        $http.put('/game/approvedebate', reviewDebate).then(function (response) {
+            UserService.scoreUpdate(reviewDebate.user1, reviewDebate.user2, reviewDebate.winner);
+            self.getGamesForReview();
+        })
 
-    //self.getAllGames();
+    }
+    self.denyDebate = function (denyObject) {
+        console.log('deny object on service',denyObject);
+    }
+
 })

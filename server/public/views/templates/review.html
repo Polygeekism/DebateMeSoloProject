@@ -10,7 +10,7 @@
             <th class='tableHead'>Approve/Deny</th>
     </thead>
     <tbody ng-repeat='scoreboard in rv.gamesForReview.list'>
-        <tr ng-repeat="debate in scoreboard.debates" ng-if="debate.submittedby != rv.userObject.userName " grid-item>
+        <tr ng-repeat="debate in scoreboard.debates" ng-if="debate.submittedby != rv.userObject.userName && debate.pending == true" grid-item>
             
             <td>{{debate.winner}}</td>
             <td>{{debate.description}}</td>

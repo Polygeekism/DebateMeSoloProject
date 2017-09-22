@@ -33,8 +33,8 @@ myApp.controller('GameController', ['GameService', 'UserService', '$routeParams'
         } else {
             //call the game service to update the scoreboard
             GameService.submitDebate(newDebate);
-            //call the user service to update the users stats
-            UserService.scoreUpdate(self.displayGame.list[0].user1, self.displayGame.list[0].user2, newDebate.winner)
+           
+            
             //reset the page for another debate topic.
             self.debateInformation = {
                 description: '',

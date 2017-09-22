@@ -178,7 +178,7 @@ router.put('/newdebate', function (req, res) {
         Games.findByIdAndUpdate(
             req.body.gameId,
             {
-                $push: { "debates": debate }, $inc: userScore
+                $push: { "debates": debate }
             }, function (err) {
 
                 if (err) {
