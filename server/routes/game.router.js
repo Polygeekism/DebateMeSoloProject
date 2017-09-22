@@ -135,7 +135,7 @@ router.put('/approvedebate', function (req, res) {
                     //console.log('add new game err: ', err);
                     res.sendStatus(500);
                 } else {
-                    
+
                     Games.findOneAndUpdate({ _id: gameId, 'debates._id': debateId },
                         {
                             $set: { 'debates.$.pending': false }
@@ -196,4 +196,19 @@ router.put('/newdebate', function (req, res) {
 
 })
 
+router.delete('/deletedebate', function (req, res) {
+    let gameId =req.query.gameId;
+    let debateId = req.query.debatesId;
+    console.log('req.params ',  req.query);
+    
+    //remove the debate from the array with pull. sequeance is document->$pull-> from debates objects-> where id is this.
+    Games.update({ _id: gameId},
+        {$pull:{debates:{'debates._id': debateId }}},
+        function (err, game) {
+            console.log('made it through the findandremove')
+            if (err) return handleError(err);
+            res.sendStatus(200);
+
+        })
+})
 module.exports = router;

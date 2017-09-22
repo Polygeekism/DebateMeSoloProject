@@ -81,6 +81,9 @@ myApp.service('GameService', function ($http, $location, UserService, $routePara
     }
     self.denyDebate = function (denyObject) {
         console.log('deny object on service',denyObject);
+        $http.delete('/game/deletedebate',{params:{debatesId:denyObject.debatesId,gameId:denyObject.gameId}}).then(function(response){
+            self.getGamesForReview();
+        })
     }
 
 })
