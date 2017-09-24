@@ -5,6 +5,8 @@ h1{
   font-size: 25px;
 }
 
+@font-face { font-family: ScoreBoard; src: url('../vendors/SCOREBOARD.TTF'); } 
+
 /*======color pallette==========*/
 
 .colorPallete{
@@ -161,59 +163,41 @@ li a:hover {
 }
 
 .newGameButton{
-  background: #096B72;
-  background-image: -webkit-linear-gradient(top, #096B72, #1D4977);
-  background-image: -moz-linear-gradient(top, #096B72, #1D4977);
-  background-image: -ms-linear-gradient(top, #096B72, #1D4977);
-  background-image: -o-linear-gradient(top, #096B72, #1D4977);
-  background-image: linear-gradient(to bottom, #096B72, #1D4977);
-  -webkit-border-radius: 15;
-  -moz-border-radius: 15;
-  border-radius: 15px;
   font-family: 'Encode Sans Condensed';
-  color: #ffffff;
-  font-size: 14px;
+  margin: 10px;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #E0E0E0;
+  font-size: 20px;
+  background: #1D4977;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
-  width: 150px;
-  height:40px;
 }
 
 .newGameButton:hover{
   background: #3E92CC;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3E92CC, #096B72);
   text-decoration: none;
 }
 .logOut{
-  background: #096B72;
-  background-image: -webkit-linear-gradient(top, #096B72, #1D4977);
-  background-image: -moz-linear-gradient(top, #096B72, #1D4977);
-  background-image: -ms-linear-gradient(top, #096B72, #1D4977);
-  background-image: -o-linear-gradient(top, #096B72, #1D4977);
-  background-image: linear-gradient(to bottom, #096B72, #1D4977);
-  -webkit-border-radius: 15;
-  -moz-border-radius: 15;
-  border-radius: 15px;
   font-family: 'Encode Sans Condensed';
-  color: #ffffff;
-  font-size: 14px;
+  margin: 10px;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #E0E0E0;
+  font-size: 20px;
+  background: #1D4977;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
-  width: 90px;
+  width: 125px;
   height:40px;
 }
 
 .logOut:hover{
   background: #3E92CC;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3E92CC, #096B72);
   text-decoration: none;
 }
 
@@ -225,4 +209,51 @@ li a:hover {
 #gameDiv{
   padding: 15px;
   width:350px;
+}
+/*============== Game view styling =============*/
+#nameScoreBoard{
+  padding:10px;
+}
+.opponentNames{
+  text-transform: uppercase;
+  margin:0px;
+  color:#13293D;
+}
+.opponentScores{
+  font-family: ScoreBoard;
+  font-size:100px;
+  color: #1D4977;
+}
+.scoreboardText{
+  background-image: -webkit-linear-gradient(#3E92CC,#1D4977);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  font-family: 'Permanent Marker', cursive;
+  font-size: 55px;
+}
+.opponents{
+  border-radius: 25px;
+}
+#descriptionInput{
+  border-radius: 3px;
+  border-color: lightgrey;
+}
+.submitButton{
+  margin: 10px;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #E0E0E0;
+  font-size: 20px;
+  background: #1D4977;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  font-family: 'Encode Sans Condensed';
+  
+}
+.submitButton:hover{
+  background: #3E92CC;
+  text-decoration: none;
 }
