@@ -1,18 +1,20 @@
 var mongoose = require('mongoose');
 
 // Mongo Connection //
-var mongoURI = '';
-// process.env.MONGODB_URI will only be defined if you are running on Heroku
+var databaseURI = '';
+// process.env.MONGODB_URI will only be defined if you 
+// are running on Heroku
 if(process.env.MONGODB_URI != undefined) {
     // use the string value of the environment variable
-    mongoURI = process.env.MONGODB_URI;
+    databaseURI = process.env.MONGODB_URI;
 } else {
     // use the local database server
-    mongoURI = 'mongodb://localhost:27017/debateMe';
+    databaseURI = 'mongodb://localhost:27017/<dbname>';
 }
 
+
 // var mongoURI = "mongodb://localhost:27017/passport";
-var mongoDB = mongoose.connect(mongoURI).connection;
+var mongoDB = mongoose.connect(databaseURI).connection;
 
 mongoDB.on('error', function(err){
    if(err) {
