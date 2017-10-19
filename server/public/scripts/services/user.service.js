@@ -32,25 +32,25 @@ myApp.service('UserService', function ($http, $location) {
       $location.path("/home");
     });
   }
-  // self.getAllUsers = function () {
+  self.getAllUsers = function () {
 
-  //   $http.get('/user/allusers').then(function (response) {
-  //     if (response.data) {
+    $http.get('/user/allusers').then(function (response) {
+      if (response.data) {
 
-  //       self.allUsers.list = response.data;
-  //       //when all users returned, add the win percentage and a boolean to determine if they should be shown
-  //       for (i = 0; i < self.allUsers.list.length; i++) {
-  //         self.allUsers.list[i].winPercentage = (self.allUsers.list[i].totalWins) / (self.allUsers.list[i].totalDebates) * 100;
-  //         self.allUsers.list[i].show = true;
-  //       }
-  //       let users = self.allUsers;
-  //     } else {
-  //       //console.log('UserService get all users failure');
-  //       $location.path("/home");
+        self.allUsers.list = response.data;
+        //when all users returned, add the win percentage and a boolean to determine if they should be shown
+        for (i = 0; i < self.allUsers.list.length; i++) {
+          self.allUsers.list[i].winPercentage = (self.allUsers.list[i].totalWins) / (self.allUsers.list[i].totalDebates) * 100;
+          self.allUsers.list[i].show = true;
+        }
+        let users = self.allUsers;
+      } else {
+        //console.log('UserService get all users failure');
+        $location.path("/home");
 
-  //     }
-  //   })
-  // }
+      }
+    })
+  }
 
   self.getNewGameUsers = function () {
     $http.get('/user/newgameusers').then(function (response) {

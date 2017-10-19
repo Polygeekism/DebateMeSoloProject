@@ -1,6 +1,8 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-<h1>Debates to be reviewed</h1>
+<div class="reviewDiv">
+<h1 class="lead">Debates to be reviewed</h1>
+
 
 <table class="reviewTable mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <thead>
@@ -20,6 +22,7 @@
             </td>
     </tbody>
 </table>
+</div>
 
 <!-- <ul ng-repeat='scoreboard in rv.gamesForReview.list'>
     <li ng-repeat='debate in scoreboard.debates' ng-if="debate.submittedby != rv.userObject.userName ">

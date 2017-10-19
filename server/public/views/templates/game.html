@@ -2,7 +2,7 @@
 <h1 align='center' class='scoreboardText'>Scoreboard</h1>
 <div id='nameScoreBoard' layout='row' layout-align='space-between-center'>
     <md-card class='opponents' flex layout='column'>
-        <md-card-content>
+        <md-card-content flex layout='column' layout-align='center center'>
             <md-card-header>
                 <h1 class='opponentNames'>{{gc.displayGame.list[0].user1}}</h1>
             </md-card-header>
@@ -17,9 +17,9 @@
             <option ng-repeat='player in gc.selectWinner.list' value='{{player}}'>{{player}}</option></select>
         <button ng-click='gc.submitDebate(gc.debateInformation)' class='submitButton'>Submit</button>
     </div>
-    <md-card class='opponents' flex layout='column' layout-align='end end'>
-        <md-card-content flex layout='column' layout-align='end end'>
-            <md-card-header flex layout='column' layout-align='center center'>
+    <md-card class='opponents' flex layout='column'>
+        <md-card-content flex layout='column' layout-align='center center'>
+            <md-card-header >
                 <h1 class='opponentNames'>{{gc.displayGame.list[0].user2}}</h1>
             </md-card-header>
             <h2 class='opponentScores'>{{gc.displayGame.list[0].user2score}}</h2>

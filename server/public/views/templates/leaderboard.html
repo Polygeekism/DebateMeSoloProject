@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="newGameContainer">
-    <h1 class="lead">New game page</h1>
-    <div class='newGameDisplay mat-elevation-z8'>
+    <h1 class="lead">Leaderboard</h1>
+    <div class='leaderboardDisplay mat-elevation-z8'>
         <table class="gameTable mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
                 <tr>
@@ -10,11 +10,10 @@
                     <th class='tableHead'>Win Percentage</th>
             </thead>
             <tbody>
-                <tr ng-repeat="user in ngc.newGamesOptions.list" grid-item>
+                <tr ng-repeat="user in lc.allUsers.list | orderBy: '-totalWins'" grid-item>
                     <td>{{user.username}}</td>
                     <td>{{user.totalWins}}</td>
                     <td>{{user.winPercentage | number: 0}}%</td>
-                    <td><button class="newGameButton" ng-click="ngc.startNewGame(ngc.userObject.userName, user.username)">Start New Game</button></td>
             </tbody>
         </table>
         <button class="logOut" ng-click="ngc.userService.logout()">Log Out</button>
