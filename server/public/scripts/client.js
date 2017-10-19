@@ -58,6 +58,11 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/leaderboard',{
+      templateUrl: '/views/templates/leaderboard.html',
+      controller: 'LeaderboardController as lc',
+    }
+  )
     .otherwise({
       redirectTo: 'home'
     });

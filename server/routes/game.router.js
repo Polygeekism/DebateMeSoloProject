@@ -5,16 +5,21 @@ var Games = require('../models/game.js');
 
 router.get('/gameId/:id', function (req, res) {
     let gameId = req.params.id
-    //console.log('game get route hit,gameId ', gameId);
-    Games.find({ _id: gameId }, function (err, data) {
-        if (err) {
-            //console.log('find game error: ', err);
-            res.sendStatus(500);
-        } else {
-            //console.log('found data from game', data);
-            res.send(data);
-        }
-    })
+    if (req.isAuthenticated()) {
+        //console.log('game get route hit,gameId ', gameId);
+        Games.find({ _id: gameId }, function (err, data) {
+            if (err) {
+                //console.log('find game error: ', err);
+                res.sendStatus(500);
+            } else {
+                //console.log('found data from game', data);
+                res.send(data);
+            }
+        })
+    } else {
+        console.log('not logged in');
+        res.sendStatus(403);
+    }
 })
 
 router.get('/allgames', function (req, res) {
@@ -28,6 +33,9 @@ router.get('/allgames', function (req, res) {
                 res.send(data);
             }
         })
+    } else {
+        console.log('not logged in');
+        res.sendStatus(403);
     }
 })
 
@@ -49,6 +57,9 @@ router.get('/usergames', function (req, res) {
             }
 
         })
+    } else {
+        console.log('not logged in');
+        res.sendStatus(403);
     }
 })
 
@@ -59,8 +70,9 @@ router.get('/reviewgames', function (req, res) {
         let currentUser = [req.user.username];
         // let reviewArray = [];
         Games.find({
+
             _id: { $in: gamesArray },
-            'debates.pending': true,
+            'debates.pending': true
 
         },
             function (err, data) {
@@ -74,6 +86,9 @@ router.get('/reviewgames', function (req, res) {
         //     for(var i=0; i<data.length;)
         //     res.send(data);
         // })
+    } else {
+        console.log('not logged in');
+        res.sendStatus(403);
     }
 
 })
@@ -85,29 +100,33 @@ router.post('/', function (req, res) {
         user1: req.body.user1,
         user2: req.body.user2
     }
-
-    Games.create(gameToSave, function (err, post) {
-        //console.log('post game CreateGame response, ', post);
-        if (err) {
-            //console.log('error creating game in DB');
-            res.sendStatus(500);
-        } else {
-            //post response above is the game that was created
-            //console.log('successfully created game in DB');
-            Games.find({
-                $and: [{ user1: req.body.user1 }, { user2: req.body.user2 }]
-            }, function (err, data) {
-                if (err) {
-                    //console.log('find user error: ', err);
-                    res.sendStatus(500);
-                } else {
-                    //console.log('found data from GET', data);
-                    res.send(data);
+    if (req.isAuthenticated()) {
+        Games.create(gameToSave, function (err, post) {
+            //console.log('post game CreateGame response, ', post);
+            if (err) {
+                //console.log('error creating game in DB');
+                res.sendStatus(500);
+            } else {
+                //post response above is the game that was created
+                //console.log('successfully created game in DB');
+                Games.find({
+                    $and: [{ user1: req.body.user1 }, { user2: req.body.user2 }]
+                }, function (err, data) {
+                    if (err) {
+                        //console.log('find user error: ', err);
+                        res.sendStatus(500);
+                    } else {
+                        //console.log('found data from GET', data);
+                        res.send(data);
+                    }
                 }
+                );
             }
-            );
-        }
-    })
+        })
+    } else {
+        console.log('not logged in');
+        res.sendStatus(403);
+    }
 })
 router.put('/approvedebate', function (req, res) {
     if (req.isAuthenticated()) {
@@ -160,6 +179,9 @@ router.put('/approvedebate', function (req, res) {
 
             }
         )
+    } else {
+        console.log('not logged in');
+        res.sendStatus(403);
     }
 
 })
@@ -192,23 +214,30 @@ router.put('/newdebate', function (req, res) {
             }
         )
 
+    } else {
+        console.log('not logged in');
+        res.sendStatus(403);
     }
 
 })
 
 router.delete('/deletedebate', function (req, res) {
-    let gameId =req.query.gameId;
+    let gameId = req.query.gameId;
     let debateId = req.query.debatesId;
-    console.log('req.params ',  req.query);
-    
-    //remove the debate from the array with pull. sequeance is document->$pull-> from debates objects-> where id is this.
-    Games.update({ _id: gameId},
-        {$pull:{debates:{'debates._id': debateId }}},
-        function (err, game) {
-            console.log('made it through the findandremove')
-            if (err) return handleError(err);
-            res.sendStatus(200);
+    console.log('req.params ', req.query);
+    if (req.isAuthenticated()) {
+        //remove the debate from the array with pull. sequeance is document->$pull-> from debates objects-> where id is this.
+        Games.update({ _id: gameId },
+            { $pull: { debates: { 'debates._id': debateId } } },
+            function (err, game) {
+                console.log('made it through the findandremove')
+                if (err) return handleError(err);
+                res.sendStatus(200);
 
-        })
+            })
+    } else {
+        console.log('not logged in');
+        res.sendStatus(403);
+    }
 })
 module.exports = router;

@@ -29,13 +29,15 @@ myApp.service('GameService', function ($http, $location, UserService, $routePara
 
     self.getGamesForReview = function () {
         $http.get('/game/reviewgames').then(function (response) {
-            console.log('response from review games, ', response);
+            //console.log('response from review games, ', response);
             self.gamesForReview.list = response.data;
+
+            
         })
     }
-    setInterval(function () {
-        self.getGamesForReview();
-      }, 8000)
+    // setInterval(function () {
+    //     self.getGamesForReview();
+    //   }, 8000)
     // self.getAllGames = function () {
     //     $http.get('/game/allgames').then(function (response) {
     //         self.allGames.list = response.data;

@@ -2,19 +2,19 @@
 <div class="userContainer">
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
-    <h2 class="userInfo">Total Points: {{uc.userObject.totalWins}}</h2>
-    <h2 class="userInfo">Win Percentage: {{uc.userObject.winPercentage | number:2}}%</h2>
-    <ul>
-        <h2 class='gamesHeading'>Games</h2>
-        <div id='gameDiv' layout='column' layout-align='start'>
-            <table>
-                <tr class='userGames' ng-repeat='game in uc.usersGames.list'>
-                    <td><a class='userGameList' ng-href='/#/game/{{game._id}}'>
-            Player 1: {{game.user1}} {{game.user1score}} || Player 2: {{game.user2}} {{game.user2score}}</a></td>
-                </tr>
-            </table>
+    <md-card>
+        <h2 class="userInfo">Total Points: {{uc.userObject.totalWins}}</h2>
+        <h2 class="userInfo">Win Percentage: {{uc.userObject.winPercentage | number:2}}%</h2>
 
+        <h2 class='gamesHeading'>Games</h2>
+
+
+        <div class='userGames' ng-repeat='game in uc.usersGames.list'>
+            <a class='userGameList' ng-href='/#/game/{{game._id}}'>
+            Player 1: {{game.user1}} {{game.user1score}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Player 2: {{game.user2}} {{game.user2score}}</a>
         </div>
-    </ul>
-    <button class="logOut"" ng-click="uc.userService.logout()">Log Out</button>
+
+
+        <md-card>
 </div>
+<button class="logOut" ng-click="uc.userService.logout()">Log Out</button>

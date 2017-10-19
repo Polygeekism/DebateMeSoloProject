@@ -79,6 +79,7 @@ h1{
   float:right;
   margin:0;
   color:magenta;
+  text-shadow: 0 0 10px #E0E0E0;
 }
 
 
@@ -131,6 +132,7 @@ li a:hover {
 }
 
 .userGameList{
+  font-size:20px;
   color: #3E92CC;
 }
 
@@ -140,8 +142,8 @@ li a:hover {
 }
 
 .gamesHeading{
-  font-size: 18px;
-  text-decoration: underline;
+  font-size: 20px;
+
 
 }
 .userInfo{
@@ -155,7 +157,8 @@ li a:hover {
 /*=======New Game view styling========*/
 .newGameContainer{
   margin:10px 5px 15px 20px;
-  width:100%;  
+   
+  max-width:400px;
 }
 .gameTable{
   width:100vw;
@@ -203,7 +206,7 @@ li a:hover {
 
 #descriptionInput{
   height: 150px;
-  width:200px;
+  width:350px;
 }
 
 #gameDiv{
@@ -217,7 +220,10 @@ li a:hover {
 .opponentNames{
   text-transform: uppercase;
   margin:0px;
+  font-size:40px;
   color:#13293D;
+  font-family: 'Permanent Marker', cursive;
+  text-decoration: underline;
 }
 .opponentScores{
   font-family: ScoreBoard;
@@ -256,4 +262,19 @@ li a:hover {
 .submitButton:hover{
   background: #3E92CC;
   text-decoration: none;
+}
+.leaderboardDisplay{
+  max-width:400px;
+}
+.gamesHeading{
+  margin:0px;
+}
+.mdl-data-table td {
+  padding: 10px 5px;
+}
+.aboutP{
+  font-size: 18px;
+}
+.aboutLi{
+  font-size: 16px;
 }
