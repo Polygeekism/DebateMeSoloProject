@@ -9,7 +9,7 @@ if(process.env.MONGODB_URI != undefined) {
     databaseURI = process.env.MONGODB_URI;
 } else {
     // use the local database server
-    databaseURI = 'mongodb://localhost:27017/<dbname>';
+    databaseURI = 'mongodb://localhost:27017/debateMe';
 }
 
 
