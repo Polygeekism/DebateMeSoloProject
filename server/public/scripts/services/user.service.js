@@ -54,12 +54,12 @@ myApp.service('UserService', function ($http, $location) {
 
   self.getNewGameUsers = function () {
     $http.get('/user/newgameusers').then(function (response) {
-      console.log('response from newgame users route, ', response);
+      //console.log('response from newgame users route, ', response);
       self.newGamesOptions.list = response.data
       for (i = 0; i < self.newGamesOptions.list.length; i++) {
         self.newGamesOptions.list[i].winPercentage = (self.newGamesOptions.list[i].totalWins) / (self.newGamesOptions.list[i].totalDebates) * 100;
       }
-      console.log('new game options, ', self.newGamesOptions.list);
+      //console.log('new game options, ', self.newGamesOptions.list);
     })
   }
 
